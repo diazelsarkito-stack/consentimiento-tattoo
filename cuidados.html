@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cuidados Posteriores - Victor Diaz Tattoo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brandDark: '#0a0a0a', brandBlack: '#000000', brandGold: '#D4AF37', brandGoldLight: '#f2d675' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: radial-gradient(circle at 50% 0%, #1f1804 0%, #000000 50%);
+            background-attachment: fixed;
+            color: #e5e7eb; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        .glass-card { 
+            background: linear-gradient(145deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.12); 
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+        }
+        .tab-btn.active {
+            background: linear-gradient(to right, #D4AF37, #f2d675);
+            color: #000000;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+        }
+    </style>
+</head>
+<body class="antialiased p-4 sm:p-6 min-h-screen flex flex-col items-center">
+
+    <div class="w-full max-w-md sm:max-w-2xl relative pb-12">
+        
+        <!-- Encabezado con Logo -->
+        <div class="text-center mb-8 pt-6">
+            <div class="flex justify-center mb-6 px-2">
+                <img src="logo_horizontal.png" alt="Victor Diaz Tattoo" class="w-[90%] sm:max-w-[420px] h-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.25)]">
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-heading font-bold text-brandGold mb-2 tracking-widest uppercase">Guía de Cuidados</h1>
+            <p class="text-xs sm:text-sm text-gray-400 px-4 font-light">El 50% del resultado depende de una cicatrización adecuada.</p>
+        </div>
+
+        <!-- Selector de Fases de Cicatrización -->
+        <div class="flex bg-black/60 p-1.5 rounded-2xl border border-brandGold/20 mb-6 gap-1">
+            <button onclick="cambiarFase(1)" id="tab-1" class="tab-btn active flex-1 py-3 text-xs sm:text-sm rounded-xl transition-all text-center">Días 1 - 3<br><span class="text-[10px] opacity-80 font-normal">Protección</span></button>
+            <button onclick="cambiarFase(2)" id="tab-2" class="tab-btn flex-1 py-3 text-xs sm:text-sm text-gray-400 rounded-xl transition-all text-center">Días 4 - 14<br><span class="text-[10px] opacity-80 font-normal">Hidratación</span></button>
+            <button onclick="cambiarFase(3)" id="tab-3" class="tab-btn flex-1 py-3 text-xs sm:text-sm text-gray-400 rounded-xl transition-all text-center">Semana 3+<br><span class="text-[10px] opacity-80 font-normal">Mantenimiento</span></button>
+        </div>
+
+        <!-- FASE 1: DÍAS 1 AL 3 -->
+        <div id="fase-1" class="glass-card p-6 space-y-5">
+            <div class="border-b border-brandGold/10 pb-3 flex items-center justify-between">
+                <h2 class="text-lg font-heading font-semibold text-brandGold uppercase">Fase 1: Curación Inicial</h2>
+                <span class="text-xs bg-brandGold/10 text-brandGold px-2.5 py-1 rounded-full border border-brandGold/30">Días 1 a 3</span>
+            </div>
+            
+            <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">1.</span>
+                    <div>
+                        <strong class="text-white">Retiro del parche o vendaje:</strong> Si llevas parche protector tipo film transparente, déjalo puesto de 3 a 4 días según te lo haya indicado el tatuador (a menos que se llene de fluido en exceso o se despegue). Si llevas papel film tradicional, retíralo tras 2 o 3 horas.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">2.</span>
+                    <div>
+                        <strong class="text-white">Lavado suave:</strong> Cuando ya no tengas algún protector o film, lava con agua tibia o fría (nunca caliente) y jabón neutro (sin perfume ni alcohol). Haz espuma en tus manos limpias y limpia con la yema de los dedos, sin frotar con toallas, esponjas ni uñas. Repite este proceso por lo menos 3 veces al día.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">3.</span>
+                    <div>
+                        <strong class="text-white">Secado al aire o a toques:</strong> Seca dando toques suaves con una toalla de papel desechable (de cocina). Nunca uses toallas de tela para evitar bacterias y pelusas.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- FASE 2: DÍAS 4 AL 14 -->
+        <div id="fase-2" class="glass-card p-6 space-y-5 hidden">
+            <div class="border-b border-brandGold/10 pb-3 flex items-center justify-between">
+                <h2 class="text-lg font-heading font-semibold text-brandGold uppercase">Fase 2: Regeneración</h2>
+                <span class="text-xs bg-brandGold/10 text-brandGold px-2.5 py-1 rounded-full border border-brandGold/30">Días 4 a 14</span>
+            </div>
+            
+            <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">1.</span>
+                    <div>
+                        <strong class="text-white">Hidratación ligera:</strong> Aplica una capa muy delgada de crema cicatrizante recomendada 2 o 3 veces al día. El tatuaje debe quedar hidratado pero nunca grasoso ni saturado.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">2.</span>
+                    <div>
+                        <strong class="text-white">No rascar ni arrancar costras:</strong> La piel comenzará a descamarse como tras una quemadura de sol. Deja que los cueritos caigan por sí solos al lavar; arrancarlos puede sacar partículas de tinta.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">3.</span>
+                    <div>
+                        <strong class="text-white">Ropa holgada:</strong> Usa prendas sueltas y transpirables (preferiblemente de algodón) que no ejerzan fricción continua sobre la zona.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- FASE 3: SEMANA 3 EN ADELANTE -->
+        <div id="fase-3" class="glass-card p-6 space-y-5 hidden">
+            <div class="border-b border-brandGold/10 pb-3 flex items-center justify-between">
+                <h2 class="text-lg font-heading font-semibold text-brandGold uppercase">Fase 3: Mantenimiento</h2>
+                <span class="text-xs bg-brandGold/10 text-brandGold px-2.5 py-1 rounded-full border border-brandGold/30">Semana 3+</span>
+            </div>
+            
+            <ul class="space-y-4 text-sm text-gray-300">
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">1.</span>
+                    <div>
+                        <strong class="text-white">Bloqueador solar indispensable:</strong> El sol es el principal enemigo del tatuaje. Usa siempre protector solar FPS 50+ para mantener las líneas nítidas y los contrastes oscuros.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">2.</span>
+                    <div>
+                        <strong class="text-white">Hidratación regular:</strong> Continúa usando crema humectante normal en tu rutina diaria para que la piel conserve elasticidad y el brillo natural del arte.
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-brandGold font-bold text-base mt-0.5">3.</span>
+                    <div>
+                        <strong class="text-white">Revisión de retoque:</strong> A partir del día 30 la piel ha cicatrizado en profundidad. Si notas que algún trazo fino necesita refuerzo, contáctanos para agendar tu retoque.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- QUÉ ESTÁ PROHIBIDO (TARJETA DE ADVERTENCIA) -->
+        <div class="glass-card p-6 border-red-500/20 mt-6">
+            <h3 class="text-base font-heading font-bold text-red-400 mb-3 uppercase flex items-center gap-2">
+                <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                Restricciones en los Primeros 15 Días
+            </h3>
+            <div class="grid grid-cols-2 gap-3 text-xs text-gray-300">
+                <div class="bg-black/40 p-3 rounded-xl border border-red-500/10">❌ Piscinas, jacuzzis, saunas o mar.</div>
+                <div class="bg-black/40 p-3 rounded-xl border border-red-500/10">❌ Exposición directa al sol o bronceado.</div>
+                <div class="bg-black/40 p-3 rounded-xl border border-red-500/10">❌ Rascar, frotar o retirar costras.</div>
+                <div class="bg-black/40 p-3 rounded-xl border border-red-500/10">❌ Ejercicio con fricción o sudor excesivo.</div>
+            </div>
+        </div>
+
+        <!-- BOTÓN DE CONTACTO DIRECTO / DUDAS -->
+        <div class="mt-8 text-center space-y-3">
+            <p class="text-xs text-gray-400">¿Tienes dudas sobre cómo se ve tu cicatrización o notas inflamación inusual?</p>
+            <a href="https://wa.me/573103011525?text=Hola%20Victor,%20tengo%20una%20consulta%20sobre%20el%20proceso%20de%20cicatrización%20de%20mi%20tatuaje" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:bg-[#1ebd5a] active:scale-95 transition-all text-sm uppercase tracking-wider">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Consultar por WhatsApp
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function cambiarFase(num) {
+            // Ocultar todas las fases
+            document.getElementById('fase-1').classList.add('hidden');
+            document.getElementById('fase-2').classList.add('hidden');
+            document.getElementById('fase-3').classList.add('hidden');
+            
+            // Quitar clase activa de los botones
+            document.getElementById('tab-1').classList.remove('active', 'text-black');
+            document.getElementById('tab-2').classList.remove('active', 'text-black');
+            document.getElementById('tab-3').classList.remove('active', 'text-black');
+            document.getElementById('tab-1').classList.add('text-gray-400');
+            document.getElementById('tab-2').classList.add('text-gray-400');
+            document.getElementById('tab-3').classList.add('text-gray-400');
+
+            // Activar fase seleccionada
+            document.getElementById('fase-' + num).classList.remove('hidden');
+            const tabActivo = document.getElementById('tab-' + num);
+            tabActivo.classList.add('active');
+            tabActivo.classList.remove('text-gray-400');
+        }
+    </script>
+</body>
+</html>
