@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ubicación - Victor Diaz Tattoo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brandDark: '#0a0a0a', brandBlack: '#000000', brandGold: '#D4AF37', brandGoldLight: '#f2d675' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], heading: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: radial-gradient(circle at 50% 0%, #1f1804 0%, #000000 50%);
+            background-attachment: fixed;
+            color: #e5e7eb; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        .glass-card { 
+            background: linear-gradient(145deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.12); 
+            border-radius: 20px; 
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(12px);
+        }
+        .btn-gold {
+            background: linear-gradient(to right, #D4AF37, #f2d675);
+            color: black;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-gold:active { transform: scale(0.98); }
+        
+        .btn-outline {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:active { transform: scale(0.98); background: rgba(212, 175, 55, 0.15); }
+    </style>
+</head>
+<body class="antialiased p-4 sm:p-6 min-h-screen flex flex-col items-center">
+
+    <div class="w-full max-w-md sm:max-w-2xl relative pb-10 pt-4">
+        
+        <!-- Encabezado y Logo -->
+        <div class="text-center mb-8">
+            <div class="flex justify-center mb-6 px-2">
+                <img src="logo_horizontal.png" alt="Victor Diaz Tattoo" class="w-[90%] sm:max-w-[400px] h-auto object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.25)]">
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-heading font-bold text-brandGold mb-2 tracking-widest uppercase">Ubicación</h1>
+            <p class="text-xs sm:text-sm text-gray-400 px-4 font-light">Encuentra fácilmente el estudio para tu sesión.</p>
+        </div>
+
+        <!-- 1. Dirección y Mapa -->
+        <div class="glass-card overflow-hidden">
+            <div class="p-6 border-b border-brandGold/10">
+                <h2 class="text-lg font-heading font-semibold text-brandGold mb-2 uppercase tracking-wider flex items-center gap-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Nuestra Dirección
+                </h2>
+                <!-- DIRECCIÓN ACTUALIZADA CON LOCAL Y PISO -->
+                <p class="text-base text-white mt-4 font-semibold">Victor Diaz Tattoo - 1er piso Local 7</p>
+                <p class="text-sm text-gray-300 mt-1">Cl 18A N #14-34</p>
+                <p class="text-xs text-gray-400 mt-1">Armenia, Quindío</p>
+            </div>
+            
+            <div class="w-full h-60 sm:h-80 bg-gray-900 relative">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Cl%2018A%20N%20%2314-34,%20Armenia,%20Quind%C3%ADo&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- 2. Botones de Navegación Directa por GPS -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <a href="https://www.google.com/maps/search/?api=1&query=Cl+18A+N+%2314-34,+Armenia,+Quind%C3%ADo" target="_blank" class="btn-gold flex flex-col items-center justify-center p-4 rounded-xl text-center gap-2">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C7.589 0 4 3.589 4 8c0 4.272 7.02 15.228 7.433 15.895a.667.667 0 001.134 0C13.02 23.228 20 12.272 20 8c0-4.411-3.589-8-8-8zm0 12a4 4 0 110-8 4 4 0 010 8z"/></svg>
+                <span class="text-xs font-bold uppercase tracking-wider">Abrir en<br>Google Maps</span>
+            </a>
+            
+            <a href="https://waze.com/ul?q=Cl%2018A%20N%20%2314-34%20Armenia%20Quindio&navigate=yes" target="_blank" class="btn-outline flex flex-col items-center justify-center p-4 rounded-xl text-center gap-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                <span class="text-xs font-bold uppercase tracking-wider">Llegar con<br>Waze</span>
+            </a>
+        </div>
+
+        <!-- 3. Información Adicional -->
+        <div class="glass-card p-6">
+            <h2 class="text-lg font-heading font-semibold text-brandGold mb-5 uppercase tracking-wider flex items-center gap-3 border-b border-brandGold/10 pb-3">
+                <svg class="w-5 h-5 text-brandGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Indicaciones
+            </h2>
+            <div class="space-y-5 text-sm text-gray-300 font-light">
+                
+                <div class="flex items-start gap-3">
+                    <div class="mt-1.5 w-2 h-2 rounded-full bg-brandGold shrink-0"></div>
+                    <div>
+                        <strong class="text-white font-medium block mb-1">Punto de referencia:</strong>
+                        Si vas caminando: Cuando estés frente al Portal del Quindío, baja aproximadamente una cuadra hasta llegar a Bancolombia. Voltea a mano derecha por esa calle y allí verás el mall, justo al frente de la entrada del taller de la Renault.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                    <div class="mt-1.5 w-2 h-2 rounded-full bg-brandGold shrink-0"></div>
+                    <div>
+                        <strong class="text-white font-medium block mb-1">Estacionamiento:</strong>
+                        En la bahía del taller de la Renault es totalmente permitido estacionar, también en la acera del mall. Si ambos están ocupados, hay un parqueadero público justo al lado de la heladería Gelati.
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 mt-2">
+                    <div class="mt-1.5 w-2 h-2 rounded-full bg-brandGold shrink-0"></div>
+                    <div class="w-full">
+                        <strong class="text-white font-medium block mb-2">Horarios de atención:</strong>
+                        <div class="bg-black/40 p-3 rounded-lg border border-brandGold/10 space-y-2">
+                            <p>🏢 <span class="text-brandGold font-medium">Mall:</span> Lunes a Sábado de 8:30 AM a 7:00 PM</p>
+                            <p>💉 <span class="text-brandGold font-medium">Victor Diaz Tattoo:</span> Desde las 9:00 AM (hasta el último turno acordado)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Botón de Asistencia por WhatsApp -->
+        <div class="mt-8 text-center space-y-3">
+            <p class="text-xs text-gray-400">¿Estás cerca y no encuentras la entrada?</p>
+            <a href="https://wa.me/573103011525?text=Hola%20Victor,%20voy%20en%20camino%20a%20mi%20cita%20pero%20no%20encuentro%20el%20estudio.%20¿Me%20puedes%20guiar?" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(37,211,102,0.3)] hover:bg-[#1ebd5a] active:scale-[0.98] transition-all text-sm uppercase tracking-wider">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Escríbeme al WhatsApp
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
