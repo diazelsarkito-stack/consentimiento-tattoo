@@ -3,31 +3,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#e9efff">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="ZONATA">
-  <meta name="apple-mobile-web-app-status-bar-style"
-        content="default">
-
-  <link rel="icon" type="image/png" href="./icono.png">
-  <link rel="apple-touch-icon" sizes="180x180"
-        href="./apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <title>ZONATA | Mis Servicios</title>
 
+  <!-- CONFIGURACIÓN PARA IPHONE -->
+  <meta name="theme-color" content="#e9efff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ZONATA">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- ICONOS DE LA APLICACIÓN -->
+  <link rel="icon" type="image/png" href="./icono.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=2">
+
   <style>
+
     :root {
       --azul: #3156d7;
-      --azul-fuerte: #274bd1;
       --texto: #0a1b4b;
       --secundario: #394667;
-      --borde: #e5ebfa;
-      --blanco: #ffffff;
-      --sombra:
-        0 9px 18px rgba(48,73,145,.11),
-        0 2px 4px rgba(48,73,145,.035);
+      --sombra: 0 9px 18px rgba(48,73,145,.11);
     }
 
     * {
@@ -42,14 +38,16 @@
       margin: 0;
       min-width: 320px;
       font-family: -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Inter, Arial, sans-serif;
+        "Segoe UI", Arial, sans-serif;
       color: var(--texto);
+
       background: linear-gradient(
         143deg,
         #f6f9ff 0%,
         #e4ecff 54%,
         #dce5fc 100%
       );
+
       -webkit-font-smoothing: antialiased;
     }
 
@@ -61,7 +59,7 @@
       font: inherit;
     }
 
-    /* CONTENEDOR */
+    /* CONTENEDOR PRINCIPAL */
 
     .app {
       position: relative;
@@ -69,10 +67,12 @@
       width: min(100%, 1120px);
       min-height: 100svh;
       margin: 0 auto;
+
       padding:
         calc(12px + env(safe-area-inset-top))
         13px
         calc(20px + env(safe-area-inset-bottom));
+
       overflow: hidden;
 
       background:
@@ -88,6 +88,8 @@
         );
     }
 
+    /* FONDO DECORATIVO */
+
     .app::before {
       content: "";
       position: absolute;
@@ -97,16 +99,18 @@
       top: 16%;
       height: 240px;
       border-radius: 49% 51% 54% 46%;
+
       background: linear-gradient(
         115deg,
         rgba(251,252,255,.74),
         rgba(205,213,255,.34)
       );
+
       transform: rotate(-8deg);
       pointer-events: none;
     }
 
-    /* ENCABEZADO */
+    /* ENCABEZADO SIN LOGO DUPLICADO */
 
     .header {
       display: flex;
@@ -116,24 +120,14 @@
       padding: 9px 12px;
       border-radius: 21px;
       background: rgba(255,255,255,.86);
-      border: 1px solid rgba(255,255,255,.97);
-      box-shadow:
-        0 4px 16px rgba(68,92,160,.045);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-      flex-shrink: 0;
+      border: 1px solid white;
+      box-shadow: 0 4px 16px rgba(68,92,160,.045);
     }
 
     .brand-name {
       font-size: 18px;
       font-weight: 850;
       letter-spacing: .035em;
-      line-height: 1;
       white-space: nowrap;
     }
 
@@ -170,7 +164,7 @@
       height: 20px;
     }
 
-    /* PRESENTACIÓN PRINCIPAL */
+    /* SECCIÓN PRINCIPAL */
 
     .hero {
       display: flex;
@@ -185,6 +179,7 @@
       height: 90px;
       flex-shrink: 0;
       object-fit: contain;
+
       filter: drop-shadow(
         0 8px 12px rgba(19,146,120,.10)
       );
@@ -215,7 +210,7 @@
       line-height: 1.38;
     }
 
-    /* SERVICIOS */
+    /* LISTADO DE SERVICIOS */
 
     .services {
       display: grid;
@@ -225,6 +220,7 @@
 
     .service {
       display: grid;
+
       grid-template-columns:
         minmax(0,1.32fr)
         minmax(0,1fr)
@@ -234,11 +230,14 @@
       align-items: center;
       min-height: 90px;
       padding: 12px;
+
       border: 1px solid rgba(255,255,255,.97);
       border-radius: 19px;
       background: rgba(255,255,255,.96);
       box-shadow: var(--sombra);
     }
+
+    /* ICONOS Y NOMBRES */
 
     .identity {
       display: flex;
@@ -285,7 +284,6 @@
       font-size: 15px;
       font-weight: 850;
       line-height: 1.18;
-      letter-spacing: -.018em;
     }
 
     .service-description {
@@ -295,7 +293,7 @@
       color: var(--secundario);
     }
 
-    /* NÚMEROS DE CUENTA */
+    /* NÚMERO DE CUENTA */
 
     .account {
       min-width: 0;
@@ -325,6 +323,7 @@
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
       user-select: all;
+      -webkit-user-select: all;
     }
 
     /* BOTÓN COPIAR */
@@ -348,7 +347,7 @@
       height: 17px;
     }
 
-    /* BOTÓN PAGAR */
+    /* BOTONES DE PAGO */
 
     .pay {
       display: flex;
@@ -358,19 +357,22 @@
       min-height: 42px;
       padding: 0 7px;
       border-radius: 11px;
+
       background: linear-gradient(
         112deg,
         #3658e3,
         #3150cd
       );
-      color: #fff;
+
+      color: white;
       font-size: 12px;
       font-weight: 780;
       text-align: center;
       text-decoration: none;
+      white-space: nowrap;
+
       box-shadow:
         0 4px 12px rgba(48,77,212,.15);
-      white-space: nowrap;
     }
 
     .pay:active {
@@ -388,7 +390,7 @@
       cursor: default;
     }
 
-    /* AVISO DE SEGURIDAD */
+    /* AVISO */
 
     .tip {
       margin: 16px 6px 0;
@@ -398,13 +400,15 @@
       line-height: 1.45;
     }
 
-    /* PIE DE PÁGINA */
+    /* CRÉDITOS */
 
     .footer {
       margin: 17px 8px 0;
       padding: 12px 0 3px;
+
       border-top:
         1px solid rgba(104,126,177,.19);
+
       color: #596782;
       font-size: 11px;
       text-align: center;
@@ -416,18 +420,19 @@
       font-weight: 750;
     }
 
-    /* NOTIFICACIÓN */
+    /* MENSAJE AL COPIAR */
 
     .toast {
       position: fixed;
       z-index: 10;
-      bottom: calc(
-        20px + env(safe-area-inset-bottom)
-      );
+
+      bottom:
+        calc(20px + env(safe-area-inset-bottom));
+
       left: 50%;
       transform: translate(-50%,15px);
       background: #172f53;
-      color: #fff;
+      color: white;
       font-size: 12px;
       font-weight: 650;
       padding: 11px 15px;
@@ -436,6 +441,7 @@
       opacity: 0;
       pointer-events: none;
       transition: .2s;
+
       box-shadow: 0 7px 20px #142a5040;
     }
 
@@ -484,6 +490,7 @@
           minmax(0,1.25fr)
           minmax(0,1fr)
           74px;
+
         padding: 9px;
         gap: 5px;
         min-height: 82px;
@@ -584,10 +591,12 @@
 
       .service {
         min-height: 114px;
+
         grid-template-columns:
           minmax(0,1.2fr)
           minmax(0,.85fr)
           172px;
+
         gap: 15px;
         padding: 18px 22px;
         border-radius: 23px;
@@ -650,6 +659,7 @@
         margin-top: 22px;
       }
     }
+
   </style>
 </head>
 
@@ -657,16 +667,18 @@
 
   <main class="app" id="inicio">
 
-    <!-- ENCABEZADO SIN LOGO DUPLICADO -->
+    <!-- ENCABEZADO -->
 
     <header class="header">
 
-      <div class="brand">
-        <span class="brand-name">ZONATA</span>
-      </div>
+      <span class="brand-name">
+        ZONATA
+      </span>
 
-      <span class="separator"
-            aria-hidden="true"></span>
+      <span
+        class="separator"
+        aria-hidden="true">
+      </span>
 
       <span class="header-label">
         Mis Servicios
@@ -676,18 +688,20 @@
         class="home"
         id="home"
         type="button"
-        title="Volver al inicio"
         aria-label="Volver al inicio">
 
-        <svg viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="1.9"
-             stroke-linecap="round"
-             stroke-linejoin="round"
-             aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
 
-          <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+          <path
+            d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+
           <path d="M9 21v-8h6v8"/>
 
         </svg>
@@ -698,23 +712,23 @@
 
     <!-- LOGO PRINCIPAL -->
 
-    <section class="hero" aria-labelledby="titulo">
+    <section class="hero">
 
       <img
         class="hero-logo"
-        src="./icono.png"
-        alt="ZONATA"
+        src="./icono.png?v=2"
+        alt="Logo ZONATA"
         width="90"
         height="90">
 
-      <span class="hero-divider"
-            aria-hidden="true"></span>
+      <span
+        class="hero-divider"
+        aria-hidden="true">
+      </span>
 
       <div class="hero-copy">
 
-        <h1 id="titulo">
-          Mis Servicios
-        </h1>
+        <h1>Mis Servicios</h1>
 
         <p>
           Paga fácil tus servicios del hogar<br>
@@ -730,25 +744,31 @@
     <section
       class="services"
       id="servicios"
-      aria-label="Cuentas y enlaces de pago">
+      aria-label="Servicios del hogar">
     </section>
 
-    <!-- AVISO -->
+    <!-- SEGURIDAD -->
 
     <p class="tip">
-      🔒 Los pagos se realizan en portales externos.
-      Verifica la dirección web antes de ingresar
-      datos bancarios.
+
+      🔒 Los pagos se realizan en portales
+      externos. Verifica la dirección web
+      antes de ingresar datos bancarios.
+
     </p>
 
-    <!-- CRÉDITO -->
+    <!-- PIE DE PÁGINA -->
 
     <footer class="footer">
+
       Aplicación diseñada por el ingeniero
       <strong>Víctor Díaz</strong>
+
     </footer>
 
   </main>
+
+  <!-- NOTIFICACIÓN -->
 
   <div
     class="toast"
@@ -761,49 +781,49 @@
 
     /*
     =====================================
-    DATOS DE LOS SERVICIOS
+    CUENTAS Y ENLACES DE PAGO
     =====================================
     */
 
     const servicios = [
 
       {
-        nombre: 'EDEQ',
-        descripcion: 'Energía eléctrica',
-        cuenta: '360954',
-        tipo: 'electric',
-        url: 'https://www.edeq.com.co/clientes-y-usuarios/factura-edeq/paga-tu-factura'
+        nombre: "EDEQ",
+        descripcion: "Energía eléctrica",
+        cuenta: "360954",
+        tipo: "electric",
+        url: "https://www.edeq.com.co/clientes-y-usuarios/factura-edeq/paga-tu-factura"
       },
 
       {
-        nombre: 'EPA',
-        descripcion: 'Agua y alcantarillado',
-        cuenta: '167688',
-        tipo: 'water',
-        url: 'https://epa-epayco-prd.saas.arqbs.com/'
+        nombre: "EPA",
+        descripcion: "Agua y alcantarillado",
+        cuenta: "167688",
+        tipo: "water",
+        url: "https://epa-epayco-prd.saas.arqbs.com/"
       },
 
       {
-        nombre: 'EFIGAS',
-        descripcion: 'Gas domiciliario',
-        cuenta: '1493582',
-        tipo: 'gas',
-        url: 'https://portal.efigas.com.co/payments'
+        nombre: "EFIGAS",
+        descripcion: "Gas domiciliario",
+        cuenta: "1493582",
+        tipo: "gas",
+        url: "https://portal.efigas.com.co/payments"
       },
 
       {
-        nombre: 'Internet',
-        descripcion: 'Servicio de internet',
-        cuenta: '15359689',
-        tipo: 'internet',
-        url: ''
+        nombre: "Internet",
+        descripcion: "Servicio de internet",
+        cuenta: "15359689",
+        tipo: "internet",
+        url: ""
       }
 
     ];
 
     /*
     =====================================
-    ICONOS
+    ICONOS DE LOS SERVICIOS
     =====================================
     */
 
@@ -827,7 +847,7 @@
 
     /*
     =====================================
-    ICONO COPIAR
+    ICONO PARA COPIAR
     =====================================
     */
 
@@ -840,51 +860,82 @@
            stroke-linejoin="round"
            aria-hidden="true">
 
-        <rect x="8" y="8"
-              width="12" height="12"
-              rx="2"/>
+        <rect
+          x="8"
+          y="8"
+          width="12"
+          height="12"
+          rx="2"/>
 
-        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
+        <path
+          d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
 
       </svg>
     `;
 
-    const iconoServicio = (tipo) =>
-      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
-      iconos[tipo] +
-      '</svg>';
+    /*
+    =====================================
+    FUNCIONES AUXILIARES
+    =====================================
+    */
 
     const contenedor =
-      document.getElementById('servicios');
+      document.getElementById("servicios");
 
     let timer;
 
+    function crearElemento(tag, clase, texto) {
+
+      const elemento =
+        document.createElement(tag);
+
+      if (clase) {
+        elemento.className = clase;
+      }
+
+      if (texto !== undefined) {
+        elemento.textContent = texto;
+      }
+
+      return elemento;
+
+    }
+
+    function iconoServicio(tipo) {
+
+      return '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        iconos[tipo] +
+        '</svg>';
+
+    }
+
     /*
     =====================================
-    NOTIFICACIONES
+    MENSAJES DE CONFIRMACIÓN
     =====================================
     */
 
     function notificar(mensaje) {
 
       const toast =
-        document.getElementById('toast');
+        document.getElementById("toast");
 
       toast.textContent = mensaje;
-
-      toast.classList.add('visible');
+      toast.classList.add("visible");
 
       clearTimeout(timer);
 
       timer = setTimeout(() => {
-        toast.classList.remove('visible');
+
+        toast.classList.remove("visible");
+
       }, 2200);
 
     }
 
     /*
     =====================================
-    COPIAR CUENTAS
+    COPIAR NÚMERO DE CUENTA
     =====================================
     */
 
@@ -899,174 +950,186 @@
 
           await navigator.clipboard.writeText(texto);
 
-          notificar('✓ Cuenta copiada');
+          notificar("✓ Cuenta copiada");
+
           return;
 
         }
 
-      } catch (_) {}
+      } catch (error) {}
 
-      const t =
-        document.createElement('textarea');
+      // Método alternativo para iPhone
 
-      t.value = texto;
-      t.setAttribute('readonly', '');
+      const campo =
+        document.createElement("textarea");
 
-      t.style.cssText =
-        'position:fixed;top:0;left:0;opacity:0';
+      campo.value = texto;
 
-      document.body.append(t);
+      campo.setAttribute("readonly", "");
 
-      t.focus();
-      t.select();
+      campo.style.cssText =
+        "position:fixed;top:0;left:0;opacity:0";
 
-      try {
-        t.setSelectionRange(0, t.value.length);
-      } catch (_) {}
+      document.body.append(campo);
 
-      let ok = false;
+      campo.focus();
+      campo.select();
 
       try {
-        ok = document.execCommand('copy');
-      } catch (_) {}
 
-      t.remove();
+        campo.setSelectionRange(
+          0,
+          campo.value.length
+        );
 
-      notificar(
-        ok
-          ? '✓ Cuenta copiada'
-          : 'Mantén pulsado el número para copiar'
-      );
+      } catch (error) {}
+
+      let copiado = false;
+
+      try {
+
+        copiado =
+          document.execCommand("copy");
+
+      } catch (error) {}
+
+      campo.remove();
+
+      if (copiado) {
+
+        notificar("✓ Cuenta copiada");
+
+      } else {
+
+        notificar(
+          "Mantén pulsado el número para copiar"
+        );
+
+      }
 
     }
 
     /*
     =====================================
-    CREACIÓN DE ELEMENTOS
+    CREAR TARJETAS
     =====================================
     */
 
-    function elemento(tag, clase, texto) {
+    servicios.forEach(servicio => {
 
-      const e = document.createElement(tag);
-
-      if (clase) {
-        e.className = clase;
-      }
-
-      if (texto !== undefined) {
-        e.textContent = texto;
-      }
-
-      return e;
-
-    }
-
-    /*
-    =====================================
-    CREAR LOS CUATRO SERVICIOS
-    =====================================
-    */
-
-    servicios.forEach(s => {
-
-      const fila = elemento(
-        'article', 'service'
+      const fila = crearElemento(
+        "article",
+        "service"
       );
 
-      const identidad = elemento(
-        'div', 'identity'
+      // Identidad del servicio
+
+      const identidad = crearElemento(
+        "div",
+        "identity"
       );
 
-      const simbolo = elemento(
-        'span', 'symbol ' + s.tipo
+      const simbolo = crearElemento(
+        "span",
+        "symbol " + servicio.tipo
       );
 
-      simbolo.innerHTML = iconoServicio(s.tipo);
+      simbolo.innerHTML =
+        iconoServicio(servicio.tipo);
 
       simbolo.setAttribute(
-        'aria-hidden', 'true'
+        "aria-hidden",
+        "true"
       );
 
-      const info = elemento(
-        'div', 'service-info'
+      const info = crearElemento(
+        "div",
+        "service-info"
       );
 
-      info.append(
-
-        elemento(
-          'div', 'service-name', s.nombre
-        ),
-
-        elemento(
-          'div', 'service-description', s.descripcion
-        )
-
+      const nombre = crearElemento(
+        "div",
+        "service-name",
+        servicio.nombre
       );
+
+      const descripcion = crearElemento(
+        "div",
+        "service-description",
+        servicio.descripcion
+      );
+
+      info.append(nombre, descripcion);
 
       identidad.append(simbolo, info);
 
-      // Cuenta
+      // Número de cuenta
 
-      const cuenta = elemento(
-        'div', 'account'
+      const cuenta = crearElemento(
+        "div",
+        "account"
       );
 
-      cuenta.append(
-        elemento(
-          'span', 'account-label', 'N.º de cuenta'
-        )
+      const etiqueta = crearElemento(
+        "span",
+        "account-label",
+        "N.º de cuenta"
       );
 
-      const accion = elemento(
-        'div', 'account-row'
+      const accion = crearElemento(
+        "div",
+        "account-row"
       );
 
-      accion.append(
-        elemento(
-          'span', 'account-number', s.cuenta
-        )
+      const numero = crearElemento(
+        "span",
+        "account-number",
+        servicio.cuenta
       );
 
-      // Copiar
+      accion.append(numero);
 
-      const botonCopiar = elemento(
-        'button', 'copy'
+      // Botón copiar
+
+      const botonCopiar = crearElemento(
+        "button",
+        "copy"
       );
 
-      botonCopiar.type = 'button';
-
+      botonCopiar.type = "button";
       botonCopiar.innerHTML = copiarIcono;
-
-      botonCopiar.title = 'Copiar cuenta';
+      botonCopiar.title = "Copiar cuenta";
 
       botonCopiar.setAttribute(
-        'aria-label',
-        'Copiar número de ' + s.nombre
+        "aria-label",
+        "Copiar número de " + servicio.nombre
       );
 
       botonCopiar.addEventListener(
-        'click',
-        () => copiar(s.cuenta)
+        "click",
+        () => copiar(servicio.cuenta)
       );
 
       accion.append(botonCopiar);
-      cuenta.append(accion);
 
-      // Enlace de pago
+      cuenta.append(etiqueta, accion);
 
-      const pago = elemento(
-        'a', 'pay'
+      // Botón pagar
+
+      const pago = crearElemento(
+        "a",
+        "pay"
       );
 
-      if (s.url) {
+      if (servicio.url) {
 
-        pago.href = s.url;
-        pago.rel = 'noreferrer';
+        pago.href = servicio.url;
+
+        // Abrir directamente desde el navegador
+        pago.rel = "noreferrer";
 
         pago.title =
-          'Pagar ' + s.nombre +
-          ' en el portal correspondiente';
+          "Pagar " + servicio.nombre;
 
         pago.innerHTML = `
           <span class="short">Pagar ↗</span>
@@ -1075,17 +1138,24 @@
 
       } else {
 
-        pago.classList.add('disabled');
+        pago.classList.add("disabled");
 
-        pago.textContent = 'Pendiente';
+        pago.textContent = "Pendiente";
 
         pago.setAttribute(
-          'aria-disabled', 'true'
+          "aria-disabled",
+          "true"
         );
 
       }
 
-      fila.append(identidad, cuenta, pago);
+      // Construcción final
+
+      fila.append(
+        identidad,
+        cuenta,
+        pago
+      );
 
       contenedor.append(fila);
 
@@ -1093,16 +1163,16 @@
 
     /*
     =====================================
-    VOLVER AL INICIO
+    BOTÓN INICIO
     =====================================
     */
 
-    document.getElementById('home')
-      .addEventListener('click', () => {
+    document.getElementById("home")
+      .addEventListener("click", () => {
 
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
 
       });
