@@ -2,57 +2,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
-    
-<!-- Nombre de la aplicación -->
-<meta name="apple-mobile-web-app-title"
-      content="Mis Servicios">
-
-<!-- Abrir sin la barra de Safari -->
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
-
-<!-- Estilo de la barra superior -->
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="default">
-
-<!-- Icono del iPhone -->
-<link rel="apple-touch-icon"
-      sizes="180x180"
-      href="./icono.png">
-
-<!-- Color de la aplicación -->
-<meta name="theme-color"
-      content="#f6f8fc">
-
-    
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f6f8fc">
-  <title>Mis Servicios</title>
+  <meta name="theme-color" content="#e9efff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ZONATA">
+  <meta name="apple-mobile-web-app-status-bar-style"
+        content="default">
+
+  <link rel="icon" type="image/png" href="./icono.png">
+  <link rel="apple-touch-icon" sizes="180x180"
+        href="./apple-touch-icon.png">
+
+  <title>ZONATA | Mis Servicios</title>
 
   <style>
     :root {
-      --bg: #f6f8fc;
-      --card: #ffffff;
-      --ink: #16233e;
-      --muted: #68758a;
-      --line: #e5ebf3;
-      --blue: #335bdc;
-      --soft: #eef3ff;
-      --shadow: 0 12px 34px rgba(35,57,101,.055);
-    }
-
-    body.dark {
-      --bg: #101725;
-      --card: #1b2638;
-      --ink: #f4f7ff;
-      --muted: #adbad0;
-      --line: #34425a;
-      --blue: #9ab1ff;
-      --soft: #273754;
-      --shadow: 0 12px 34px rgba(0,0,0,.16);
+      --azul: #3156d7;
+      --azul-fuerte: #274bd1;
+      --texto: #0a1b4b;
+      --secundario: #394667;
+      --borde: #e5ebfa;
+      --blanco: #ffffff;
+      --sombra:
+        0 9px 18px rgba(48,73,145,.11),
+        0 2px 4px rgba(48,73,145,.035);
     }
 
     * {
@@ -60,320 +35,619 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
     }
 
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: system-ui, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Inter, Arial, sans-serif;
+      color: var(--texto);
+      background: linear-gradient(
+        143deg,
+        #f6f9ff 0%,
+        #e4ecff 54%,
+        #dce5fc 100%
+      );
       -webkit-font-smoothing: antialiased;
-      transition: background .2s, color .2s;
     }
 
-    .shell {
-      max-width: 540px;
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* CONTENEDOR */
+
+    .app {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 1120px);
       min-height: 100svh;
-      margin: auto;
-      padding: 24px 17px
-        calc(30px + env(safe-area-inset-bottom));
+      margin: 0 auto;
+      padding:
+        calc(12px + env(safe-area-inset-top))
+        13px
+        calc(20px + env(safe-area-inset-bottom));
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          ellipse 80% 34% at 88% 24%,
+          rgba(207,201,255,.4),
+          transparent 78%
+        ),
+        radial-gradient(
+          ellipse 60% 35% at 7% 66%,
+          rgba(231,241,255,.85),
+          transparent 83%
+        );
+    }
+
+    .app::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -16%;
+      right: -18%;
+      top: 16%;
+      height: 240px;
+      border-radius: 49% 51% 54% 46%;
+      background: linear-gradient(
+        115deg,
+        rgba(251,252,255,.74),
+        rgba(205,213,255,.34)
+      );
+      transform: rotate(-8deg);
+      pointer-events: none;
     }
 
     /* ENCABEZADO */
 
-    .top {
+    .header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 8px;
+      min-height: 59px;
+      padding: 9px 12px;
+      border-radius: 21px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(255,255,255,.97);
+      box-shadow:
+        0 4px 16px rgba(68,92,160,.045);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: 800;
-    }
-
-    .brand-icon {
-      display: grid;
-      place-items: center;
-      width: 39px;
-      height: 39px;
-      border-radius: 13px;
-      background: #eaf0ff;
-      color: #243b7a;
-      font-size: 21px;
-    }
-
-    .theme {
-      border: 1px solid var(--line);
-      color: var(--ink);
-      background: var(--card);
-      height: 41px;
-      width: 41px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      font-size: 19px;
-      cursor: pointer;
-    }
-
-    /* BIENVENIDA */
-
-    .hero {
-      padding: 36px 2px 22px;
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 2px;
-      font-weight: 800;
-      color: var(--blue);
-      text-transform: uppercase;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 7.5vw, 40px);
-      letter-spacing: -1.4px;
-      line-height: 1.08;
-      margin: 11px 0 10px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 0;
-      max-width: 350px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 12px 2px 15px;
-    }
-
-    .section-head h2 {
-      font-size: 16px;
-      margin: 0;
-    }
-
-    .count {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* TARJETAS */
-
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 13px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 19px;
-      box-shadow: var(--shadow);
-    }
-
-    .service {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      margin-bottom: 17px;
-    }
-
-    .symbol {
-      width: 49px;
-      height: 49px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      font-size: 25px;
+      gap: 8px;
+      min-width: 0;
       flex-shrink: 0;
     }
 
-    .service h3 {
-      margin: 0 0 4px;
-      font-size: 17px;
+    .brand-name {
+      font-size: 18px;
+      font-weight: 850;
+      letter-spacing: .035em;
+      line-height: 1;
+      white-space: nowrap;
     }
 
-    .service p {
-      margin: 0;
-      color: var(--muted);
+    .separator {
+      height: 24px;
+      border-left: 1px solid #bfcce9;
+      margin: 0 2px;
+    }
+
+    .header-label {
       font-size: 12px;
+      font-weight: 550;
+      white-space: nowrap;
     }
 
-    /* NÚMERO DE CUENTA */
+    /* BOTÓN INICIO */
 
-    .small-label {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 1.1px;
-      font-weight: 750;
-      margin-bottom: 7px;
-    }
-
-    .account {
-      display: flex;
-      align-items: center;
-      gap: 9px;
+    .home {
+      margin-left: auto;
+      display: grid;
+      place-items: center;
+      height: 36px;
+      width: 36px;
+      flex-shrink: 0;
+      border: 0;
       border-radius: 12px;
-      background: var(--bg);
-      padding: 6px 6px 6px 13px;
-      border: 1px solid var(--line);
-    }
-
-    .account-number {
-      flex: 1;
-      font-size: 17px;
-      letter-spacing: .35px;
-      font-weight: 740;
-      font-variant-numeric: tabular-nums;
-      user-select: all;
-    }
-
-    .copy {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      justify-content: center;
-      border: 1px solid var(--line);
-      background: var(--card);
-      color: var(--ink);
-      border-radius: 9px;
-      min-height: 43px;
-      padding: 0 12px;
-      font-size: 13px;
-      font-weight: 680;
+      color: #1855ba;
+      background: #eaf0ff;
       cursor: pointer;
     }
 
-    .copy:active {
-      transform: scale(.98);
+    .home svg {
+      width: 20px;
+      height: 20px;
     }
 
-    /* BOTONES DE PAGO */
+    /* PRESENTACIÓN PRINCIPAL */
 
-    .go {
+    .hero {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 12px;
+      min-height: 131px;
+      padding: 18px 8px 15px;
+    }
+
+    .hero-logo {
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
+      object-fit: contain;
+      filter: drop-shadow(
+        0 8px 12px rgba(19,146,120,.10)
+      );
+    }
+
+    .hero-divider {
+      align-self: center;
+      height: 74px;
+      border-left: 1.5px solid #5974c1;
+    }
+
+    .hero-copy {
+      min-width: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(22px,6.4vw,28px);
+      margin: 0 0 6px;
+      font-weight: 850;
+      letter-spacing: -.045em;
+      line-height: 1.12;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--secundario);
+      font-size: 12px;
+      line-height: 1.38;
+    }
+
+    /* SERVICIOS */
+
+    .services {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns:
+        minmax(0,1.32fr)
+        minmax(0,1fr)
+        82px;
+
       gap: 8px;
-      width: 100%;
-      min-height: 51px;
-      margin-top: 13px;
-      border-radius: 12px;
-      background: #315bd8;
-      color: white;
-      font-weight: 760;
+      align-items: center;
+      min-height: 90px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,.97);
+      border-radius: 19px;
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--sombra);
+    }
+
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .symbol {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+    }
+
+    .symbol svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .electric {
+      background: #fff0d1;
+      color: #f5b21a;
+    }
+
+    .water {
+      background: #deefff;
+      color: #198fe7;
+    }
+
+    .gas {
+      background: #ffeadb;
+      color: #f97d26;
+    }
+
+    .internet {
+      background: #ebe5ff;
+      color: #4f4fdc;
+    }
+
+    .service-name {
       font-size: 15px;
-      text-decoration: none;
-      touch-action: manipulation;
+      font-weight: 850;
+      line-height: 1.18;
+      letter-spacing: -.018em;
     }
 
-    .go:active {
-      background: #2446aa;
+    .service-description {
+      margin-top: 3px;
+      font-size: 9px;
+      line-height: 1.22;
+      color: var(--secundario);
     }
 
-    .go.disabled {
-      background: var(--soft);
-      color: var(--muted);
-      pointer-events: none;
-      border: 1px solid var(--line);
+    /* NÚMEROS DE CUENTA */
+
+    .account {
+      min-width: 0;
+      padding-left: 8px;
+      border-left: 1px solid #ced8ee;
     }
 
-    .help-link {
+    .account-label {
       display: block;
-      margin-top: 10px;
+      margin-bottom: 2px;
+      font-size: 9px;
+      color: var(--secundario);
+      white-space: nowrap;
+    }
+
+    .account-row {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .account-number {
+      font-size: 14px;
+      font-weight: 820;
+      letter-spacing: -.04em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      user-select: all;
+    }
+
+    /* BOTÓN COPIAR */
+
+    .copy {
+      width: 28px;
+      height: 30px;
+      flex: 0 0 28px;
+      display: grid;
+      place-items: center;
+      margin-left: auto;
+      background: #eaf1ff;
+      border: 0;
+      color: #2558c7;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .copy svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    /* BOTÓN PAGAR */
+
+    .pay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      min-height: 42px;
+      padding: 0 7px;
+      border-radius: 11px;
+      background: linear-gradient(
+        112deg,
+        #3658e3,
+        #3150cd
+      );
+      color: #fff;
+      font-size: 12px;
+      font-weight: 780;
       text-align: center;
-      font-size: 11px;
-      color: var(--muted);
-      line-height: 1.45;
+      text-decoration: none;
+      box-shadow:
+        0 4px 12px rgba(48,77,212,.15);
+      white-space: nowrap;
+    }
+
+    .pay:active {
+      filter: brightness(.93);
+    }
+
+    .pay .wide {
+      display: none;
+    }
+
+    .pay.disabled {
+      background: #e8edf8;
+      color: #6d7c9a;
+      box-shadow: none;
+      cursor: default;
     }
 
     /* AVISO DE SEGURIDAD */
 
-    .note {
-      margin-top: 22px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: var(--card);
-      font-size: 12px;
-      line-height: 1.65;
-      color: var(--muted);
-    }
-
-    footer {
+    .tip {
+      margin: 16px 6px 0;
+      color: #596782;
+      font-size: 10px;
       text-align: center;
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: 11px;
+      line-height: 1.45;
     }
 
-    /* NOTIFICACIÓN AL COPIAR */
+    /* PIE DE PÁGINA */
+
+    .footer {
+      margin: 17px 8px 0;
+      padding: 12px 0 3px;
+      border-top:
+        1px solid rgba(104,126,177,.19);
+      color: #596782;
+      font-size: 11px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .footer strong {
+      color: #24458d;
+      font-weight: 750;
+    }
+
+    /* NOTIFICACIÓN */
 
     .toast {
       position: fixed;
-      bottom: calc(25px + env(safe-area-inset-bottom));
+      z-index: 10;
+      bottom: calc(
+        20px + env(safe-area-inset-bottom)
+      );
       left: 50%;
-      transform: translate(-50%, 18px);
-      background: #1d304c;
-      color: white;
-      border-radius: 12px;
-      padding: 13px 18px;
-      font-size: 13px;
+      transform: translate(-50%,15px);
+      background: #172f53;
+      color: #fff;
+      font-size: 12px;
       font-weight: 650;
+      padding: 11px 15px;
+      border-radius: 11px;
+      white-space: nowrap;
       opacity: 0;
       pointer-events: none;
-      transition: opacity .18s, transform .18s;
-      white-space: nowrap;
-      max-width: calc(100% - 24px);
-      z-index: 5;
+      transition: .2s;
+      box-shadow: 0 7px 20px #142a5040;
     }
 
-    .toast.show {
+    .toast.visible {
       opacity: 1;
-      transform: translate(-50%, 0);
+      transform: translate(-50%,0);
     }
 
-    button:focus-visible,
-    a:focus-visible {
-      outline: 3px solid #7ca6ff;
+    :focus-visible {
+      outline: 3px solid #1aa6dd;
       outline-offset: 3px;
     }
 
-    /* COMPUTADOR Y TABLET */
+    /* IPHONE PEQUEÑO */
 
-    @media (min-width: 760px) {
-      .shell {
-        max-width: 840px;
-        padding: 30px 30px 60px;
+    @media (max-width:370px) {
+
+      .app {
+        padding-left: 9px;
+        padding-right: 9px;
       }
 
-      .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .header {
+        padding: 8px;
+      }
+
+      .header-label {
+        font-size: 11px;
+      }
+
+      .brand-name {
+        font-size: 16px;
+      }
+
+      .hero-logo {
+        width: 75px;
+        height: 75px;
       }
 
       .hero {
-        padding: 45px 2px 30px;
+        min-height: 111px;
+      }
+
+      .service {
+        grid-template-columns:
+          minmax(0,1.25fr)
+          minmax(0,1fr)
+          74px;
+        padding: 9px;
+        gap: 5px;
+        min-height: 82px;
+      }
+
+      .symbol {
+        flex-basis: 37px;
+        width: 37px;
+        height: 37px;
+      }
+
+      .service-name {
+        font-size: 13px;
+      }
+
+      .service-description {
+        font-size: 8px;
+      }
+
+      .account {
+        padding-left: 5px;
+      }
+
+      .account-number {
+        font-size: 13px;
+      }
+
+      .account-label {
+        font-size: 8px;
+      }
+
+      .copy {
+        width: 25px;
+        flex-basis: 25px;
+        height: 29px;
+      }
+
+      .pay {
+        font-size: 11px;
+        min-height: 39px;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        scroll-behavior: auto !important;
-        transition: none !important;
+    /* TABLET Y COMPUTADOR */
+
+    @media (min-width:520px) {
+
+      .app {
+        padding: 18px 22px 34px;
+      }
+
+      .header {
+        padding: 15px 24px;
+        min-height: 78px;
+        border-radius: 27px;
+      }
+
+      .brand-name {
+        font-size: 26px;
+      }
+
+      .header-label {
+        font-size: 20px;
+      }
+
+      .separator {
+        height: 35px;
+        margin: 0 12px;
+      }
+
+      .home {
+        height: 50px;
+        width: 50px;
+      }
+
+      .hero {
+        gap: 24px;
+        padding: 28px 22px;
+        min-height: 185px;
+      }
+
+      .hero-logo {
+        height: 130px;
+        width: 130px;
+      }
+
+      .hero-divider {
+        height: 100px;
+      }
+
+      .hero h1 {
+        font-size: clamp(32px,4.3vw,50px);
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .service {
+        min-height: 114px;
+        grid-template-columns:
+          minmax(0,1.2fr)
+          minmax(0,.85fr)
+          172px;
+        gap: 15px;
+        padding: 18px 22px;
+        border-radius: 23px;
+      }
+
+      .symbol {
+        width: 64px;
+        height: 64px;
+        flex-basis: 64px;
+        border-radius: 17px;
+      }
+
+      .symbol svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .service-name {
+        font-size: 22px;
+      }
+
+      .service-description {
+        font-size: 14px;
+      }
+
+      .account {
+        padding-left: 16px;
+      }
+
+      .account-label {
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .account-number {
+        font-size: 22px;
+      }
+
+      .copy {
+        width: 37px;
+        height: 37px;
+        flex-basis: 37px;
+      }
+
+      .pay {
+        min-height: 58px;
+        font-size: 16px;
+      }
+
+      .pay .wide {
+        display: inline;
+      }
+
+      .pay .short {
+        display: none;
+      }
+
+      .tip {
+        font-size: 13px;
+        margin-top: 22px;
       }
     }
   </style>
@@ -381,87 +655,100 @@
 
 <body>
 
-  <div class="shell">
+  <main class="app" id="inicio">
 
-    <!-- ENCABEZADO -->
+    <!-- ENCABEZADO SIN LOGO DUPLICADO -->
 
-    <header class="top">
+    <header class="header">
 
       <div class="brand">
-        <span class="brand-icon" aria-hidden="true">⌂</span>
-        <span>Mis Servicios</span>
+        <span class="brand-name">ZONATA</span>
       </div>
 
+      <span class="separator"
+            aria-hidden="true"></span>
+
+      <span class="header-label">
+        Mis Servicios
+      </span>
+
       <button
-        class="theme"
-        id="theme"
+        class="home"
+        id="home"
         type="button"
-        aria-label="Activar modo oscuro"
-        title="Cambiar apariencia">
-        ☾
+        title="Volver al inicio"
+        aria-label="Volver al inicio">
+
+        <svg viewBox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="1.9"
+             stroke-linecap="round"
+             stroke-linejoin="round"
+             aria-hidden="true">
+
+          <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+          <path d="M9 21v-8h6v8"/>
+
+        </svg>
+
       </button>
 
     </header>
 
-    <main>
+    <!-- LOGO PRINCIPAL -->
 
-      <!-- TÍTULO -->
+    <section class="hero" aria-labelledby="titulo">
 
-      <div class="hero">
+      <img
+        class="hero-logo"
+        src="./icono.png"
+        alt="ZONATA"
+        width="90"
+        height="90">
 
-        <div class="eyebrow">
-          Todo en un solo lugar
-        </div>
+      <span class="hero-divider"
+            aria-hidden="true"></span>
 
-        <h1>
-          Paga fácil.<br>
-          Sin complicarte.
+      <div class="hero-copy">
+
+        <h1 id="titulo">
+          Mis Servicios
         </h1>
 
         <p>
-          Tus servicios y números de cuenta,
-          siempre a un toque.
+          Paga fácil tus servicios del hogar<br>
+          en un solo lugar.
         </p>
 
       </div>
 
-      <div class="section-head">
-        <h2>Servicios del hogar</h2>
-        <span class="count">4 servicios</span>
-      </div>
+    </section>
 
-      <!-- TARJETAS -->
+    <!-- SERVICIOS -->
 
-      <section
-        class="cards"
-        id="cards"
-        aria-label="Accesos a servicios">
-      </section>
+    <section
+      class="services"
+      id="servicios"
+      aria-label="Cuentas y enlaces de pago">
+    </section>
 
-      <!-- AVISO -->
+    <!-- AVISO -->
 
-      <aside class="note">
+    <p class="tip">
+      🔒 Los pagos se realizan en portales externos.
+      Verifica la dirección web antes de ingresar
+      datos bancarios.
+    </p>
 
-        🔒 Los pagos se realizan fuera de esta página,
-        en los portales de cada empresa.
+    <!-- CRÉDITO -->
 
-        Verifica siempre la dirección antes de
-        ingresar información bancaria.
-
-        Si un portal no carga, intenta abrirlo
-        en Safari o Chrome.
-
-      </aside>
-
-    </main>
-
-    <footer>
-      Tu centro de pagos personal ✦
+    <footer class="footer">
+      Aplicación diseñada por el ingeniero
+      <strong>Víctor Díaz</strong>
     </footer>
 
-  </div>
-
-  <!-- MENSAJE DE CONFIRMACIÓN -->
+  </main>
 
   <div
     class="toast"
@@ -473,205 +760,133 @@
   <script>
 
     /*
-    ======================================
-    CONFIGURACIÓN DE SERVICIOS
-    ======================================
+    =====================================
+    DATOS DE LOS SERVICIOS
+    =====================================
     */
 
     const servicios = [
 
       {
-        nombre: "EDEQ",
-        detalle: "Energía eléctrica",
-        emoji: "⚡",
-        tono: "#fff3d9",
-        cuenta: "360954",
-        url: "https://www.edeq.com.co/clientes-y-usuarios/factura-edeq/paga-tu-factura",
-        nota: "Desde EDEQ, toca «Consulta y paga aquí»."
+        nombre: 'EDEQ',
+        descripcion: 'Energía eléctrica',
+        cuenta: '360954',
+        tipo: 'electric',
+        url: 'https://www.edeq.com.co/clientes-y-usuarios/factura-edeq/paga-tu-factura'
       },
 
       {
-        nombre: "EPA",
-        detalle: "Agua y alcantarillado",
-        emoji: "💧",
-        tono: "#e3f3ff",
-        cuenta: "167688",
-        url: "https://epa-epayco-prd.saas.arqbs.com/"
+        nombre: 'EPA',
+        descripcion: 'Agua y alcantarillado',
+        cuenta: '167688',
+        tipo: 'water',
+        url: 'https://epa-epayco-prd.saas.arqbs.com/'
       },
 
       {
-        nombre: "EFIGAS",
-        detalle: "Gas domiciliario",
-        emoji: "🔥",
-        tono: "#fff0e5",
-        cuenta: "1493582",
-        url: "https://portal.efigas.com.co/payments"
+        nombre: 'EFIGAS',
+        descripcion: 'Gas domiciliario',
+        cuenta: '1493582',
+        tipo: 'gas',
+        url: 'https://portal.efigas.com.co/payments'
       },
 
       {
-        nombre: "Internet",
-        detalle: "Servicio de internet",
-        emoji: "🌐",
-        tono: "#efebff",
-        cuenta: "15359689",
-        url: ""
+        nombre: 'Internet',
+        descripcion: 'Servicio de internet',
+        cuenta: '15359689',
+        tipo: 'internet',
+        url: ''
       }
 
     ];
 
     /*
-    ======================================
-    CREAR TARJETAS
-    ======================================
+    =====================================
+    ICONOS
+    =====================================
     */
 
-    const cards = document.getElementById("cards");
+    const iconos = {
 
-    function make(tag, cls, content) {
+      electric:
+        '<path d="M13 2 5 13h6l-1 9 9-12h-6z" fill="currentColor"/>',
 
-      const e = document.createElement(tag);
+      water:
+        '<path d="M12 2C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-13Z" fill="currentColor"/>' +
+        '<path d="M9 17a4 4 0 0 1-1-4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>',
 
-      if (cls) {
-        e.className = cls;
-      }
+      gas:
+        '<path d="M12 2c2 5-2 7 1 10 1-2 3-3 3-5 3 4 4 7 4 10a8 8 0 0 1-16 0c0-4 2-7 5-10-1 3 0 5 1 6 2-3 1-7 2-11Z" fill="currentColor"/>',
 
-      if (content !== undefined) {
-        e.textContent = content;
-      }
+      internet:
+        '<path d="M2 9c6-6 14-6 20 0M5 13c4-4 10-4 14 0M9 17c2-2 4-2 6 0" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/>' +
+        '<circle cx="12" cy="21" r="1.5" fill="currentColor"/>'
 
-      return e;
-    }
-
-    servicios.forEach(s => {
-
-      const card = make("article", "card");
-
-      // Encabezado de cada servicio
-
-      const head = make("div", "service");
-
-      const symbol = make("span", "symbol", s.emoji);
-      symbol.style.background = s.tono;
-      symbol.setAttribute("aria-hidden", "true");
-
-      const info = make("div");
-
-      info.append(
-        make("h3", "", s.nombre),
-        make("p", "", s.detalle)
-      );
-
-      head.append(symbol, info);
-
-      // Número de cuenta
-
-      const label = make(
-        "span",
-        "small-label",
-        "NÚMERO DE CUENTA"
-      );
-
-      const account = make("div", "account");
-
-      const num = make(
-        "span",
-        "account-number",
-        s.cuenta
-      );
-
-      // Botón copiar
-
-      const copy = make(
-        "button",
-        "copy",
-        "⧉ Copiar"
-      );
-
-      copy.type = "button";
-
-      copy.setAttribute(
-        "aria-label",
-        `Copiar número de ${s.nombre}`
-      );
-
-      copy.addEventListener("click", () => {
-        copiar(s.cuenta);
-      });
-
-      account.append(num, copy);
-
-      // Enlace de pago
-
-      const link = make(
-        "a",
-        "go",
-        s.url ? "Ir a pagar ↗" : "Enlace pendiente"
-      );
-
-      if (s.url) {
-
-        link.href = s.url;
-
-        // Se abre en la misma pestaña
-        // para mayor compatibilidad móvil.
-
-        link.rel = "noreferrer";
-
-      } else {
-
-        link.classList.add("disabled");
-        link.setAttribute("aria-disabled", "true");
-        link.removeAttribute("href");
-
-      }
-
-      card.append(
-        head,
-        label,
-        account,
-        link
-      );
-
-      // Nota adicional para EDEQ
-
-      if (s.nota) {
-
-        const hint = make(
-          "span",
-          "help-link",
-          s.nota
-        );
-
-        card.append(hint);
-
-      }
-
-      cards.append(card);
-
-    });
+    };
 
     /*
-    ======================================
-    COPIAR NÚMERO DE CUENTA
-    ======================================
+    =====================================
+    ICONO COPIAR
+    =====================================
     */
+
+    const copiarIcono = `
+      <svg viewBox="0 0 24 24"
+           fill="none"
+           stroke="currentColor"
+           stroke-width="1.9"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+           aria-hidden="true">
+
+        <rect x="8" y="8"
+              width="12" height="12"
+              rx="2"/>
+
+        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
+
+      </svg>
+    `;
+
+    const iconoServicio = (tipo) =>
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+      iconos[tipo] +
+      '</svg>';
+
+    const contenedor =
+      document.getElementById('servicios');
 
     let timer;
 
-    function aviso(t) {
+    /*
+    =====================================
+    NOTIFICACIONES
+    =====================================
+    */
 
-      const el = document.getElementById("toast");
+    function notificar(mensaje) {
 
-      el.textContent = t;
-      el.classList.add("show");
+      const toast =
+        document.getElementById('toast');
+
+      toast.textContent = mensaje;
+
+      toast.classList.add('visible');
 
       clearTimeout(timer);
 
       timer = setTimeout(() => {
-        el.classList.remove("show");
-      }, 2300);
+        toast.classList.remove('visible');
+      }, 2200);
 
     }
+
+    /*
+    =====================================
+    COPIAR CUENTAS
+    =====================================
+    */
 
     async function copiar(texto) {
 
@@ -684,98 +899,213 @@
 
           await navigator.clipboard.writeText(texto);
 
-          aviso("✓ Número copiado");
+          notificar('✓ Cuenta copiada');
           return;
 
         }
 
-      } catch (e) {}
+      } catch (_) {}
 
-      // Alternativa para otros navegadores
+      const t =
+        document.createElement('textarea');
 
-      const area = document.createElement("textarea");
+      t.value = texto;
+      t.setAttribute('readonly', '');
 
-      area.value = texto;
-      area.style.position = "fixed";
-      area.style.opacity = "0";
+      t.style.cssText =
+        'position:fixed;top:0;left:0;opacity:0';
 
-      document.body.append(area);
+      document.body.append(t);
 
-      area.focus();
-      area.select();
+      t.focus();
+      t.select();
+
+      try {
+        t.setSelectionRange(0, t.value.length);
+      } catch (_) {}
 
       let ok = false;
 
       try {
+        ok = document.execCommand('copy');
+      } catch (_) {}
 
-        ok = document.execCommand("copy");
+      t.remove();
 
-      } catch (e) {}
-
-      area.remove();
-
-      aviso(
+      notificar(
         ok
-          ? "✓ Número copiado"
-          : "Mantén pulsado el número para copiarlo"
+          ? '✓ Cuenta copiada'
+          : 'Mantén pulsado el número para copiar'
       );
 
     }
 
     /*
-    ======================================
-    MODO OSCURO
-    ======================================
+    =====================================
+    CREACIÓN DE ELEMENTOS
+    =====================================
     */
 
-    const theme = document.getElementById("theme");
+    function elemento(tag, clase, texto) {
 
-    let dark = false;
+      const e = document.createElement(tag);
 
-    try {
+      if (clase) {
+        e.className = clase;
+      }
 
-      dark = localStorage.getItem(
-        "mis-servicios-tema"
-      ) === "dark";
+      if (texto !== undefined) {
+        e.textContent = texto;
+      }
 
-    } catch (e) {}
-
-    function applyTheme() {
-
-      document.body.classList.toggle(
-        "dark",
-        dark
-      );
-
-      theme.textContent = dark ? "☀" : "☾";
-
-      theme.setAttribute(
-        "aria-label",
-        dark
-          ? "Activar modo claro"
-          : "Activar modo oscuro"
-      );
+      return e;
 
     }
 
-    theme.addEventListener("click", () => {
+    /*
+    =====================================
+    CREAR LOS CUATRO SERVICIOS
+    =====================================
+    */
 
-      dark = !dark;
+    servicios.forEach(s => {
 
-      applyTheme();
+      const fila = elemento(
+        'article', 'service'
+      );
 
-      try {
+      const identidad = elemento(
+        'div', 'identity'
+      );
 
-        localStorage.setItem(
-          "mis-servicios-tema",
-          dark ? "dark" : "light"
+      const simbolo = elemento(
+        'span', 'symbol ' + s.tipo
+      );
+
+      simbolo.innerHTML = iconoServicio(s.tipo);
+
+      simbolo.setAttribute(
+        'aria-hidden', 'true'
+      );
+
+      const info = elemento(
+        'div', 'service-info'
+      );
+
+      info.append(
+
+        elemento(
+          'div', 'service-name', s.nombre
+        ),
+
+        elemento(
+          'div', 'service-description', s.descripcion
+        )
+
+      );
+
+      identidad.append(simbolo, info);
+
+      // Cuenta
+
+      const cuenta = elemento(
+        'div', 'account'
+      );
+
+      cuenta.append(
+        elemento(
+          'span', 'account-label', 'N.º de cuenta'
+        )
+      );
+
+      const accion = elemento(
+        'div', 'account-row'
+      );
+
+      accion.append(
+        elemento(
+          'span', 'account-number', s.cuenta
+        )
+      );
+
+      // Copiar
+
+      const botonCopiar = elemento(
+        'button', 'copy'
+      );
+
+      botonCopiar.type = 'button';
+
+      botonCopiar.innerHTML = copiarIcono;
+
+      botonCopiar.title = 'Copiar cuenta';
+
+      botonCopiar.setAttribute(
+        'aria-label',
+        'Copiar número de ' + s.nombre
+      );
+
+      botonCopiar.addEventListener(
+        'click',
+        () => copiar(s.cuenta)
+      );
+
+      accion.append(botonCopiar);
+      cuenta.append(accion);
+
+      // Enlace de pago
+
+      const pago = elemento(
+        'a', 'pay'
+      );
+
+      if (s.url) {
+
+        pago.href = s.url;
+        pago.rel = 'noreferrer';
+
+        pago.title =
+          'Pagar ' + s.nombre +
+          ' en el portal correspondiente';
+
+        pago.innerHTML = `
+          <span class="short">Pagar ↗</span>
+          <span class="wide">Pagar ahora ↗</span>
+        `;
+
+      } else {
+
+        pago.classList.add('disabled');
+
+        pago.textContent = 'Pendiente';
+
+        pago.setAttribute(
+          'aria-disabled', 'true'
         );
 
-      } catch (e) {}
+      }
+
+      fila.append(identidad, cuenta, pago);
+
+      contenedor.append(fila);
 
     });
 
-    applyTheme();
+    /*
+    =====================================
+    VOLVER AL INICIO
+    =====================================
+    */
+
+    document.getElementById('home')
+      .addEventListener('click', () => {
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+      });
 
   </script>
 
