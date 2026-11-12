@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f8fc">
+  <title>Mis Servicios</title>
+
+  <style>
+    :root {
+      --bg: #f6f8fc;
+      --card: #ffffff;
+      --ink: #16233e;
+      --muted: #68758a;
+      --line: #e5ebf3;
+      --blue: #335bdc;
+      --soft: #eef3ff;
+      --shadow: 0 12px 34px rgba(35,57,101,.055);
+    }
+
+    body.dark {
+      --bg: #101725;
+      --card: #1b2638;
+      --ink: #f4f7ff;
+      --muted: #adbad0;
+      --line: #34425a;
+      --blue: #9ab1ff;
+      --soft: #273754;
+      --shadow: 0 12px 34px rgba(0,0,0,.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      transition: background .2s, color .2s;
+    }
+
+    .shell {
+      max-width: 540px;
+      min-height: 100svh;
+      margin: auto;
+      padding: 24px 17px
+        calc(30px + env(safe-area-inset-bottom));
+    }
+
+    /* ENCABEZADO */
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      border-radius: 13px;
+      background: #eaf0ff;
+      color: #243b7a;
+      font-size: 21px;
+    }
+
+    .theme {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: var(--card);
+      height: 41px;
+      width: 41px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    /* BIENVENIDA */
+
+    .hero {
+      padding: 36px 2px 22px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      color: var(--blue);
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 7.5vw, 40px);
+      letter-spacing: -1.4px;
+      line-height: 1.08;
+      margin: 11px 0 10px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 350px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 12px 2px 15px;
+    }
+
+    .section-head h2 {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .count {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* TARJETAS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 13px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 19px;
+      box-shadow: var(--shadow);
+    }
+
+    .service {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 17px;
+    }
+
+    .symbol {
+      width: 49px;
+      height: 49px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      flex-shrink: 0;
+    }
+
+    .service h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* NÚMERO DE CUENTA */
+
+    .small-label {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.1px;
+      font-weight: 750;
+      margin-bottom: 7px;
+    }
+
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-radius: 12px;
+      background: var(--bg);
+      padding: 6px 6px 6px 13px;
+      border: 1px solid var(--line);
+    }
+
+    .account-number {
+      flex: 1;
+      font-size: 17px;
+      letter-spacing: .35px;
+      font-weight: 740;
+      font-variant-numeric: tabular-nums;
+      user-select: all;
+    }
+
+    .copy {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      border-radius: 9px;
+      min-height: 43px;
+      padding: 0 12px;
+      font-size: 13px;
+      font-weight: 680;
+      cursor: pointer;
+    }
+
+    .copy:active {
+      transform: scale(.98);
+    }
+
+    /* BOTONES DE PAGO */
+
+    .go {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 51px;
+      margin-top: 13px;
+      border-radius: 12px;
+      background: #315bd8;
+      color: white;
+      font-weight: 760;
+      font-size: 15px;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    .go:active {
+      background: #2446aa;
+    }
+
+    .go.disabled {
+      background: var(--soft);
+      color: var(--muted);
+      pointer-events: none;
+      border: 1px solid var(--line);
+    }
+
+    .help-link {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* AVISO DE SEGURIDAD */
+
+    .note {
+      margin-top: 22px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--card);
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* NOTIFICACIÓN AL COPIAR */
+
+    .toast {
+      position: fixed;
+      bottom: calc(25px + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translate(-50%, 18px);
+      background: #1d304c;
+      color: white;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 650;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s, transform .18s;
+      white-space: nowrap;
+      max-width: calc(100% - 24px);
+      z-index: 5;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #7ca6ff;
+      outline-offset: 3px;
+    }
+
+    /* COMPUTADOR Y TABLET */
+
+    @media (min-width: 760px) {
+      .shell {
+        max-width: 840px;
+        padding: 30px 30px 60px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero {
+        padding: 45px 2px 30px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="shell">
+
+    <!-- ENCABEZADO -->
+
+    <header class="top">
+
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">⌂</span>
+        <span>Mis Servicios</span>
+      </div>
+
+      <button
+        class="theme"
+        id="theme"
+        type="button"
+        aria-label="Activar modo oscuro"
+        title="Cambiar apariencia">
+        ☾
+      </button>
+
+    </header>
+
+    <main>
+
+      <!-- TÍTULO -->
+
+      <div class="hero">
+
+        <div class="eyebrow">
+          Todo en un solo lugar
+        </div>
+
+        <h1>
+          Paga fácil.<br>
+          Sin complicarte.
+        </h1>
+
+        <p>
+          Tus servicios y números de cuenta,
+          siempre a un toque.
+        </p>
+
+      </div>
+
+      <div class="section-head">
+        <h2>Servicios del hogar</h2>
+        <span class="count">4 servicios</span>
+      </div>
+
+      <!-- TARJETAS -->
+
+      <section
+        class="cards"
+        id="cards"
+        aria-label="Accesos a servicios">
+      </section>
+
+      <!-- AVISO -->
+
+      <aside class="note">
+
+        🔒 Los pagos se realizan fuera de esta página,
+        en los portales de cada empresa.
+
+        Verifica siempre la dirección antes de
+        ingresar información bancaria.
+
+        Si un portal no carga, intenta abrirlo
+        en Safari o Chrome.
+
+      </aside>
+
+    </main>
+
+    <footer>
+      Tu centro de pagos personal ✦
+    </footer>
+
+  </div>
+
+  <!-- MENSAJE DE CONFIRMACIÓN -->
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite">
+  </div>
+
+  <script>
+
+    /*
+    ======================================
+    CONFIGURACIÓN DE SERVICIOS
+    ======================================
+    */
+
+    const servicios = [
+
+      {
+        nombre: "EDEQ",
+        detalle: "Energía eléctrica",
+        emoji: "⚡",
+        tono: "#fff3d9",
+        cuenta: "360954",
+        url: "https://www.edeq.com.co/clientes-y-usuarios/factura-edeq/paga-tu-factura",
+        nota: "Desde EDEQ, toca «Consulta y paga aquí»."
+      },
+
+      {
+        nombre: "EPA",
+        detalle: "Agua y alcantarillado",
+        emoji: "💧",
+        tono: "#e3f3ff",
+        cuenta: "167688",
+        url: "https://epa-epayco-prd.saas.arqbs.com/"
+      },
+
+      {
+        nombre: "EFIGAS",
+        detalle: "Gas domiciliario",
+        emoji: "🔥",
+        tono: "#fff0e5",
+        cuenta: "1493582",
+        url: "https://portal.efigas.com.co/payments"
+      },
+
+      {
+        nombre: "Internet",
+        detalle: "Servicio de internet",
+        emoji: "🌐",
+        tono: "#efebff",
+        cuenta: "15359689",
+        url: ""
+      }
+
+    ];
+
+    /*
+    ======================================
+    CREAR TARJETAS
+    ======================================
+    */
+
+    const cards = document.getElementById("cards");
+
+    function make(tag, cls, content) {
+
+      const e = document.createElement(tag);
+
+      if (cls) {
+        e.className = cls;
+      }
+
+      if (content !== undefined) {
+        e.textContent = content;
+      }
+
+      return e;
+    }
+
+    servicios.forEach(s => {
+
+      const card = make("article", "card");
+
+      // Encabezado de cada servicio
+
+      const head = make("div", "service");
+
+      const symbol = make("span", "symbol", s.emoji);
+      symbol.style.background = s.tono;
+      symbol.setAttribute("aria-hidden", "true");
+
+      const info = make("div");
+
+      info.append(
+        make("h3", "", s.nombre),
+        make("p", "", s.detalle)
+      );
+
+      head.append(symbol, info);
+
+      // Número de cuenta
+
+      const label = make(
+        "span",
+        "small-label",
+        "NÚMERO DE CUENTA"
+      );
+
+      const account = make("div", "account");
+
+      const num = make(
+        "span",
+        "account-number",
+        s.cuenta
+      );
+
+      // Botón copiar
+
+      const copy = make(
+        "button",
+        "copy",
+        "⧉ Copiar"
+      );
+
+      copy.type = "button";
+
+      copy.setAttribute(
+        "aria-label",
+        `Copiar número de ${s.nombre}`
+      );
+
+      copy.addEventListener("click", () => {
+        copiar(s.cuenta);
+      });
+
+      account.append(num, copy);
+
+      // Enlace de pago
+
+      const link = make(
+        "a",
+        "go",
+        s.url ? "Ir a pagar ↗" : "Enlace pendiente"
+      );
+
+      if (s.url) {
+
+        link.href = s.url;
+
+        // Se abre en la misma pestaña
+        // para mayor compatibilidad móvil.
+
+        link.rel = "noreferrer";
+
+      } else {
+
+        link.classList.add("disabled");
+        link.setAttribute("aria-disabled", "true");
+        link.removeAttribute("href");
+
+      }
+
+      card.append(
+        head,
+        label,
+        account,
+        link
+      );
+
+      // Nota adicional para EDEQ
+
+      if (s.nota) {
+
+        const hint = make(
+          "span",
+          "help-link",
+          s.nota
+        );
+
+        card.append(hint);
+
+      }
+
+      cards.append(card);
+
+    });
+
+    /*
+    ======================================
+    COPIAR NÚMERO DE CUENTA
+    ======================================
+    */
+
+    let timer;
+
+    function aviso(t) {
+
+      const el = document.getElementById("toast");
+
+      el.textContent = t;
+      el.classList.add("show");
+
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        el.classList.remove("show");
+      }, 2300);
+
+    }
+
+    async function copiar(texto) {
+
+      try {
+
+        if (
+          navigator.clipboard &&
+          window.isSecureContext
+        ) {
+
+          await navigator.clipboard.writeText(texto);
+
+          aviso("✓ Número copiado");
+          return;
+
+        }
+
+      } catch (e) {}
+
+      // Alternativa para otros navegadores
+
+      const area = document.createElement("textarea");
+
+      area.value = texto;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+
+      document.body.append(area);
+
+      area.focus();
+      area.select();
+
+      let ok = false;
+
+      try {
+
+        ok = document.execCommand("copy");
+
+      } catch (e) {}
+
+      area.remove();
+
+      aviso(
+        ok
+          ? "✓ Número copiado"
+          : "Mantén pulsado el número para copiarlo"
+      );
+
+    }
+
+    /*
+    ======================================
+    MODO OSCURO
+    ======================================
+    */
+
+    const theme = document.getElementById("theme");
+
+    let dark = false;
+
+    try {
+
+      dark = localStorage.getItem(
+        "mis-servicios-tema"
+      ) === "dark";
+
+    } catch (e) {}
+
+    function applyTheme() {
+
+      document.body.classList.toggle(
+        "dark",
+        dark
+      );
+
+      theme.textContent = dark ? "☀" : "☾";
+
+      theme.setAttribute(
+        "aria-label",
+        dark
+          ? "Activar modo claro"
+          : "Activar modo oscuro"
+      );
+
+    }
+
+    theme.addEventListener("click", () => {
+
+      dark = !dark;
+
+      applyTheme();
+
+      try {
+
+        localStorage.setItem(
+          "mis-servicios-tema",
+          dark ? "dark" : "light"
+        );
+
+      } catch (e) {}
+
+    });
+
+    applyTheme();
+
+  </script>
+
+</body>
+</html>
